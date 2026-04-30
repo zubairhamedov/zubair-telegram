@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zubair Hamedov</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c1: #FF6B6B;
+    --c2: #FFD93D;
+    --c3: #6BCB77;
+    --c4: #4D96FF;
+    --c5: #C77DFF;
+    --dark: #1a1a2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  .bg-blobs { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.25; animation: floatBlob 8s ease-in-out infinite alternate; }
+  .blob-1 { width: 500px; height: 500px; background: var(--c1); top: -100px; left: -100px; }
+  .blob-2 { width: 400px; height: 400px; background: var(--c4); top: 30%; right: -80px; animation-delay: 2s; }
+  .blob-3 { width: 350px; height: 350px; background: var(--c5); bottom: -50px; left: 30%; animation-delay: 4s; }
+  .blob-4 { width: 300px; height: 300px; background: var(--c3); top: 60%; left: -50px; animation-delay: 1s; }
+  @keyframes floatBlob {
+    from { transform: translate(0,0) scale(1); }
+    to { transform: translate(30px,40px) scale(1.1); }
+  }
+  .container { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 40px 20px 80px; }
+  .header { text-align: center; margin-bottom: 40px; animation: slideDown 0.7s ease both; }
+  .badge { display: inline-block; background: linear-gradient(135deg, var(--c1), var(--c5)); color: white; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 18px; border-radius: 50px; margin-bottom: 16px; }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,6vw,3.5rem); font-weight: 900; color: white; line-height: 1.1; margin-bottom: 10px; }
+  .header h1 span { background: linear-gradient(90deg, var(--c2), var(--c1)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .header p { color: rgba(255,255,255,0.6); font-size: 1rem; }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+  .interests-section { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 28px; margin-bottom: 24px; animation: fadeUp 0.7s ease 0.1s both; }
+  .section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+  .interests-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .interest-chip { display: flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: 50px; border: 2px solid transparent; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.25s ease; user-select: none; }
+  .interest-chip:hover { transform: translateY(-2px); background: rgba(255,255,255,0.12); }
+  .interest-chip.active { color: var(--dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+  .interest-chip[data-color="red"].active { background: var(--c1); border-color: var(--c1); }
+  .interest-chip[data-color="yellow"].active { background: var(--c2); border-color: var(--c2); }
+  .interest-chip[data-color="green"].active { background: var(--c3); border-color: var(--c3); }
+  .interest-chip[data-color="blue"].active { background: var(--c4); border-color: var(--c4); }
+  .interest-chip[data-color="purple"].active { background: var(--c5); border-color: var(--c5); }
+  .interest-chip[data-color="orange"].active { background: #FF9A3C; border-color: #FF9A3C; }
+  .form-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 32px 28px; animation: fadeUp 0.7s ease 0.2s both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  label { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); }
+  .input-wrap { position: relative; }
+  .input-wrap .icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; pointer-events: none; }
+  input, select { width: 100%; padding: 14px 16px 14px 44px; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.1); border-radius: 14px; color: white; font-family: 'Nunito',sans-serif; font-size: 15px; font-weight: 600; transition: all 0.2s ease; -webkit-appearance: none; }
+  input::placeholder { color: rgba(255,255,255,0.3); }
+  input:focus, select:focus { outline: none; border-color: var(--c4); background: rgba(77,150,255,0.1); box-shadow: 0 0 0 4px rgba(77,150,255,0.15); }
+  select option { background: #1a1a2e; color: white; }
+  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); opacity: 0.5; cursor: pointer; }
+  .source-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .source-btn { padding: 12px; border-radius: 14px; border: 2px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6); font-family: 'Nunito',sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; transition: all 0.2s ease; user-select: none; }
+  .source-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+  .source-btn.active { border-color: var(--c3); background: rgba(107,203,119,0.15); color: var(--c3); box-shadow: 0 4px 15px rgba(107,203,119,0.2); }
+  .divider { height: 1px; background: rgba(255,255,255,0.08); margin: 24px 0; }
+  .submit-btn { width: 100%; padding: 18px; border: none; border-radius: 16px; background: linear-gradient(135deg, var(--c1), var(--c5)); color: white; font-family: 'Nunito',sans-serif; font-size: 17px; font-weight: 800; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; letter-spacing: 0.5px; margin-top: 24px; }
+  .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,107,107,0.4); }
+  .submit-btn:active { transform: translateY(-1px); }
+  .submit-btn span { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .success-overlay { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 30px; }
+  .success-overlay.show { display: flex; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .success-icon { font-size: 80px; margin-bottom: 20px; animation: bounceIn 0.6s ease; }
+  @keyframes bounceIn { 0% { transform: scale(0); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
+  .success-title { font-family: 'Playfair Display',serif; font-size: 2.2rem; font-weight: 900; color: white; margin-bottom: 12px; }
+  .success-text { color: rgba(255,255,255,0.6); font-size: 1.1rem; margin-bottom: 30px; }
+  .success-close { padding: 14px 40px; background: linear-gradient(135deg, var(--c3), var(--c4)); color: white; border: none; border-radius: 50px; font-family: 'Nunito',sans-serif; font-size: 16px; font-weight: 800; cursor: pointer; }
+  .error-msg { color: var(--c1); font-size: 12px; font-weight: 700; margin-top: 4px; display: none; }
+  .tg-note { display: flex; align-items: center; gap: 8px; background: rgba(77,150,255,0.1); border: 1px solid rgba(77,150,255,0.3); border-radius: 12px; padding: 12px 16px; margin-top: 16px; color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 600; }
+  @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="bg-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+<div class="container">
+  <div class="header">
+    <div class="badge">✦ Rasmiy Sahifa</div>
+    <h1>Zubair <span>Hamedov</span></h1>
+    <p>Ma'lumotlaringizni to'ldiring va yuboring 🚀</p>
+  </div>
+  <div class="interests-section">
+    <div class="section-title">🎯 Qiziqishlaringiz (bir nechtasini tanlang)</div>
+    <div class="interests-grid">
+      <div class="interest-chip" data-color="blue" data-value="Texnologiya">💻 Texnologiya</div>
+      <div class="interest-chip" data-color="red" data-value="Sport">⚽ Sport</div>
+      <div class="interest-chip" data-color="yellow" data-value="Musiqa">🎵 Musiqa</div>
+      <div class="interest-chip" data-color="green" data-value="Biznes">💼 Biznes</div>
+      <div class="interest-chip" data-color="purple" data-value="San'at">🎨 San'at</div>
+      <div class="interest-chip" data-color="orange" data-value="Sayohat">✈️ Sayohat</div>
+      <div class="interest-chip" data-color="blue" data-value="O'qish">📚 O'qish</div>
+      <div class="interest-chip" data-color="red" data-value="O'yin">🎮 O'yin</div>
+      <div class="interest-chip" data-color="green" data-value="Tabiat">🌿 Tabiat</div>
+      <div class="interest-chip" data-color="yellow" data-value="Oziq-ovqat">🍕 Oziq-ovqat</div>
+    </div>
+  </div>
+  <div class="form-card">
+    <div class="section-title">📝 Shaxsiy ma'lumotlar</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Ism</label>
+        <div class="input-wrap">
+          <span class="icon">👤</span>
+          <input type="text" id="firstName" placeholder="Ismingiz">
+        </div>
+        <div class="error-msg" id="err-firstName">Ismingizni kiriting</div>
+      </div>
+      <div class="form-group">
+        <label>Familiya</label>
+        <div class="input-wrap">
+          <span class="icon">👤</span>
+          <input type="text" id="lastName" placeholder="Familiyangiz">
+        </div>
+        <div class="error-msg" id="err-lastName">Familiyangizni kiriting</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Tug'ilgan yil</label>
+      <div class="input-wrap">
+        <span class="icon">🎂</span>
+        <input type="date" id="birthDate" max="2010-01-01" min="1950-01-01">
+      </div>
+      <div class="error-msg" id="err-birthDate">Tug'ilgan yilingizni tanlang</div>
+    </div>
+    <div class="form-group">
+      <label>O'zingiz haqingizda</label>
+      <div class="input-wrap">
+        <span class="icon" style="top:20px;transform:none;">✏️</span>
+        <textarea id="about" rows="3" placeholder="Qisqacha o'zingiz haqingizda..."
+          style="width:100%;padding:14px 16px 14px 44px;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.1);border-radius:14px;color:white;font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;resize:none;transition:all 0.2s;"></textarea>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section-title" style="margin-bottom:14px;">🔍 Saytni qayerdan topdingiz?</div>
+    <div class="source-grid" id="sourceGrid">
+      <button class="source-btn" data-value="Telegram">📱 Telegram</button>
+      <button class="source-btn" data-value="Instagram">📸 Instagram</button>
+      <button class="source-btn" data-value="Do'st orqali">👥 Do'st orqali</button>
+      <button class="source-btn" data-value="YouTube">▶️ YouTube</button>
+      <button class="source-btn" data-value="Google">🔍 Google</button>
+      <button class="source-btn" data-value="Boshqa">🌐 Boshqa</button>
+    </div>
+    <div class="error-msg" id="err-source" style="display:none;margin-top:8px;">Qayerdan topganingizni tanlang</div>
+    <div class="tg-note">
+      <span>📨</span>
+      <span>Ma'lumotlaringiz Telegram botga yuboriladi</span>
+    </div>
+    <button class="submit-btn" onclick="submitForm()">
+      <span>✈️ Telegram botga yuborish</span>
+    </button>
+  </div>
+</div>
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon">🎉</div>
+  <div class="success-title">Yuborildi!</div>
+  <div class="success-text">Ma'lumotlaringiz muvaffaqiyatli<br>Telegram botga yuborildi ✅</div>
+  <button class="success-close" onclick="closeSuccess()">Yopish</button>
+</div>
+<script>
+  const BOT_TOKEN = 'YOUR_BOT_TOKEN';
+  const CHAT_ID   = 'YOUR_CHAT_ID';
+
+  document.querySelectorAll('.interest-chip').forEach(chip => {
+    chip.addEventListener('click', () => chip.classList.toggle('active'));
+  });
+  document.querySelectorAll('.source-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.source-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+  function getSelectedInterests() {
+    return [...document.querySelectorAll('.interest-chip.active')].map(c => c.dataset.value).join(', ') || '—';
+  }
+  function getSelectedSource() {
+    const active = document.querySelector('.source-btn.active');
+    return active ? active.dataset.value : null;
+  }
+  function showError(id, show) {
+    const el = document.getElementById('err-' + id);
+    if (el) el.style.display = show ? 'block' : 'none';
+  }
+  async function submitForm() {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName  = document.getElementById('lastName').value.trim();
+    const birthDate = document.getElementById('birthDate').value;
+    const about     = document.getElementById('about').value.trim();
+    const source    = getSelectedSource();
+    let valid = true;
+    if (!firstName) { showError('firstName', true); valid = false; } else showError('firstName', false);
+    if (!lastName)  { showError('lastName', true);  valid = false; } else showError('lastName', false);
+    if (!birthDate) { showError('birthDate', true);  valid = false; } else showError('birthDate', false);
+    if (!source)    { document.getElementById('err-source').style.display = 'block'; valid = false; }
+    else            { document.getElementById('err-source').style.display = 'none'; }
+    if (!valid) return;
+    const interests = getSelectedInterests();
+    const now = new Date().toLocaleString('uz-UZ');
+    const msg = `🌟 *Yangi ma'lumot — Zubair Hamedov saytidan*\n\n👤 *Ism:* ${firstName}\n👤 *Familiya:* ${lastName}\n🎂 *Tug'ilgan yil:* ${birthDate}\n✏️ *O'zi haqida:* ${about || '—'}\n🎯 *Qiziqishlari:* ${interests}\n🔍 *Saytni qayerdan topdi:* ${source}\n🕐 *Vaqt:* ${now}`;
+    const btn = document.querySelector('.submit-btn');
+    btn.innerHTML = '<span>⏳ Yuborilmoqda...</span>';
+    btn.disabled = true;
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        document.getElementById('successOverlay').classList.add('show');
+        document.getElementById('firstName').value = '';
+        document.getElementById('lastName').value = '';
+        document.getElementById('birthDate').value = '';
+        document.getElementById('about').value = '';
+        document.querySelectorAll('.interest-chip').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.source-btn').forEach(b => b.classList.remove('active'));
+      } else {
+        alert('Xatolik! Bot tokenini tekshiring.');
+      }
+    } catch(e) {
+      alert('Internet xatoligi!');
+    }
+    btn.innerHTML = '<span>✈️ Telegram botga yuborish</span>';
+    btn.disabled = false;
+  }
+  function closeSuccess() {
+    document.getElementById('successOverlay').classList.remove('show');
+  }
+</script>
+</body>
+</html>
